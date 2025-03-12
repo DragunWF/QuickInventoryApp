@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="50dp"
-            android:paddingStart="170dp"
+            android:gravity="end"
             >
 
             <Button
@@ -62,5 +62,7 @@
                 android:backgroundTint="@color/black"
                 android:text="Delete" />
         </LinearLayout>
+
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>

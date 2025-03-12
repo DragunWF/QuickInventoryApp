@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int id) {
                     ItemService.clear();
                     Utils.longToast("Items have been cleared!", MainActivity.this);
+                    itemAdapter.updateDataSet();
                 }
             });
             builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
