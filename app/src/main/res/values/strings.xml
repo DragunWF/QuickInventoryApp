@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">InventoryQuickCount</string>
+    <string-array name="categories_array">
+        <item>Neccessities</item>
+        <item>Supplies</item>
+        <item>Materials</item>
+        <item>Tools</item>
+        <item>Products</item>
+        <item>Others</item>
+    </string-array>
+</resources>
