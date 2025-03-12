@@ -26,6 +26,8 @@ public class AddEditItem extends AppCompatActivity {
     private boolean isEditForm;
     private String selectedCategory = "";
 
+    private final int CHAR_LIMIT = 500;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,12 +65,17 @@ public class AddEditItem extends AppCompatActivity {
                 Utils.longToast("All fields are required", AddEditItem.this);
                 return;
             }
+            if (title.length() > CHAR_LIMIT || description.length() > CHAR_LIMIT) {
+                Utils.longToast("Title and description must be less than or equal to " + CHAR_LIMIT + " characters", AddEditItem.this);
+                return;
+            }
 
             if (isEditForm) {
                 Item item = DatabaseHelper.getItemBank().get(viewedItemId);
                 item.setTitle(title);
                 item.setDescription(description);
                 item.setCategory(selectedCategory);
+                ItemService.edit(item);
             } else {
                 ItemService.add(new Item(title, description, selectedCategory));
                 Utils.longToast("Item has been added", AddEditItem.this);
@@ -99,16 +106,21 @@ public class AddEditItem extends AppCompatActivity {
     private void setSpinner() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
-                R.array.categories_array,
+                R.array.categories_array_form,
                 android.R.layout.simple_spinner_item
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(adapter);
 
-        categorySpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-                selectedCategory = adapter.getItem(pos).toString();
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedCategory = adapter.getItem(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
     }
