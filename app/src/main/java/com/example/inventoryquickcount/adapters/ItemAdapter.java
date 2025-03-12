@@ -114,8 +114,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    ItemService.clear();
-                    Utils.longToast("Items have been cleared!", context);
+                    ItemService.delete(item.getId());
+                    Utils.longToast("Items has been deleted!", context);
                     updateDataSet();
                 }
             });
@@ -124,7 +124,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
                     // User cancels the dialog.
                 }
             });
-            builder.setMessage("Are you sure you want to clear all items!");
+            builder.setMessage("Are you sure you want to delete " + item.getTitle() + "?");
 
             builder.create().show();
         });

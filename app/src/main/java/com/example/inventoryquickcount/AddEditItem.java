@@ -43,7 +43,7 @@ public class AddEditItem extends AppCompatActivity {
             deleteBtn = findViewById(R.id.deleteBtn);
 
             viewedItemId = getIntent().getIntExtra("itemId", -1);
-            isEditForm = viewedItemId != 1;
+            isEditForm = viewedItemId != -1;
 
             setClickListeners();
             setSpinner();
