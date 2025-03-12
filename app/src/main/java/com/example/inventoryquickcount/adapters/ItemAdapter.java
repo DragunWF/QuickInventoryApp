@@ -97,9 +97,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         // contents of the view with that element
         // viewHolder.getTextView().setText(localDataSet[position]);
         Item item = localDataSet.get(position);
+
         viewHolder.getTitleText().setText(item.getTitle());
         viewHolder.getDescriptionText().setText(item.getDescription());
-        viewHolder.getCategoryText().setText(item.getCategory());
+        viewHolder.getCategoryText().setText("Category: " + item.getCategory());
+
         viewHolder.getEditBtn().setOnClickListener(v -> {
             Intent intent = new Intent(context, AddEditItem.class);
             intent.putExtra("itemId", item.getId());
